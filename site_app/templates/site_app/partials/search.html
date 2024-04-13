@@ -1,0 +1,13 @@
+<div class="container-fluid mt-3">
+    <div class="container mt-3" style="max-width: 600px">
+        <form class="row" action="{% url url_search %}" method="get">
+            {% csrf_token %}
+            <div class="col">
+                <input class="form-control" type="text" name="nome" placeholder="Nome a ser pesquisado" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-info" type="submit">Pesquisar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{% extends "site_app/global/base.html" %}
+
+{% block content %}
+    <div class="container-fluid mt-3">    
+        {% include "site_app\partials\search.html" with url_search="pesquisar" %}   
+        <div>   
+            
+            {% if pessoas %}
+            <table class="table table-hover"> 
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Data de Nascimento</th>
+                        <th>Email</th>
+                        <th>País Pretendido</th>
+                        <th></th>
+                    </tr>
+                </thead>               
+                <tbody>
+                    {% for row in pessoas %}
+                    <tr>
+                        <td width="5%">{{row.id}}</td>
+                        <td width="10%">{{row.nome}}</td>
+                        <td width="5%">{{row.nascimento}}</td>
+                        <td width="10%">{{row.email}}</td>
+                        <td width="10%">{{row.pais}}</td>                          
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="text-center h3">
+                    <p>Nome não encontrado.</p>
+                </div>   
+            {% endif %}   
+        </div>    
+    </div>     
+{% endblock content %}

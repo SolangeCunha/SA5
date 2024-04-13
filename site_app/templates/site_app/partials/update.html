@@ -1,0 +1,16 @@
+{% extends "site_app/global/base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <form action="{% url 'atualizar_id' pessoa.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="nome" value="{{pessoa.nome}}" placeholder="Nome completo" />
+        <input type="date" name="nascimento" value="{{pessoa.nascimento}}" placeholder="Data de Nascimento" />
+        <input type="text" name="email" value="{{pessoa.email}}" placeholder="example@example.com" />
+        <input type="text" name="pais" value="{{pessoa.pais}}" placeholder="País Pretendido" />
+        <button type="submit">Salvar</button>
+    </form>
+    
+</div>
+{% endblock content %}
+
