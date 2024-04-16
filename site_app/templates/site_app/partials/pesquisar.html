@@ -1,39 +1,46 @@
 {% extends "site_app/global/base.html" %}
 
 {% block content %}
-    <div class="container-fluid mt-3">    
-        {% include "site_app\partials\search.html" with url_search="pesquisar" %}   
-        <div>   
-            
-            {% if pessoas %}
-            <table class="table table-hover"> 
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Data de Nascimento</th>
-                        <th>Email</th>
-                        <th>País Pretendido</th>
-                        <th></th>
-                    </tr>
-                </thead>               
-                <tbody>
-                    {% for row in pessoas %}
-                    <tr>
-                        <td width="5%">{{row.id}}</td>
-                        <td width="10%">{{row.nome}}</td>
-                        <td width="5%">{{row.nascimento}}</td>
-                        <td width="10%">{{row.email}}</td>
-                        <td width="10%">{{row.pais}}</td>                          
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-                <div class="text-center h3">
-                    <p>Nome não encontrado.</p>
-                </div>   
-            {% endif %}   
-        </div>    
-    </div>     
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Resultado da Pesquisa</h5>
+                    {% include "site_app/partials/search.html" with url_search="pesquisar" %}
+                    <div class="mt-5">
+                        {% if pessoas %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Data de Nascimento</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">País Pretendido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in pessoas %}
+                                <tr>
+                                    <td>{{ row.id }}</td>
+                                    <td>{{ row.nome }}</td>
+                                    <td>{{ row.nascimento }}</td>
+                                    <td>{{ row.email }}</td>
+                                    <td>{{ row.pais }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <div class="text-center h3">
+                            <p>Nenhum registro encontrado.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

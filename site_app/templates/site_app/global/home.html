@@ -1,49 +1,39 @@
 {% extends "site_app/global/base.html" %}
 
 {% block content %}
-    <div class="container-fluid mt-3">
-       
-        <div style="margin-top: 50px;"></div>
-        <form action="{% url 'home' %}" method="post">
-            {% csrf_token %}
-            <input type="text" name="nome" placeholder="Nome completo" />
-            <input type="date" name="nascimento" placeholder="Data de Nascimento" />
-            <input type="text" name="email" placeholder="example@example.com" />
-            <input type="text" name="pais" placeholder="País Pretendido"/>
-            <button type="submit">Salvar</button>
-        </form>
-
-        {% if nome %}
-            <h1> Dados obtidos: </h1>
-            <p>{{nome}} {{nascimento}} {{email}} {{pais}}</p> 
-        {% endif %}
-
-        
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Data de Nascimento</th>
-                        <th>Email</th>
-                        <th>País Pretendido</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for pessoa in dados %}
-                        <tr>
-                            <td width="5%">{{pessoa.id}}</td>
-                            <td width="10%">{{pessoa.nome}}</td>
-                            <td width="5%">{{pessoa.nascimento}}</td>
-                            <td width="10%">{{pessoa.email}}</td>
-                            <td width="10%">{{pessoa.pais}}</td>
-                            <td width="10%"><a class="btn btn-danger" href="{% url "deletar_id" pessoa.id %}">Deletar</a> <a class="btn btn-primary" href="{% url "atualizar_id" pessoa.id %}">atualizar</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-                       
-        
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Usuários Cadastrados</h5>
+                    <div class="mt-3">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Data de Nascimento</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">País Pretendido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pessoa in dados|slice:"0:10" %}
+                                <tr>
+                                    <td>{{ pessoa.id }}</td>
+                                    <td>{{ pessoa.nome }}</td>
+                                    <td>{{ pessoa.nascimento }}</td>
+                                    <td>{{ pessoa.email }}</td>
+                                    <td>{{ pessoa.pais }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock content %}
